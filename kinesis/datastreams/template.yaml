@@ -1,0 +1,14 @@
+
+AWSTemplateFormatVersion: "2010-09-09"
+Description: A Simple Kinesis Data Stream Provisioned
+Resources:
+  MyStream:
+    Type: AWS::Kinesis::Stream
+    Properties:
+      RetentionPeriodHours: 24
+      ShardCount: 1
+      StreamEncryption:
+        EncryptionType: KMS
+        KeyId: !Ref myKey
+      Tags:
+        - Prod
