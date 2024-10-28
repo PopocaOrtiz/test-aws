@@ -7,4 +7,7 @@ aws dynamodb describe-table --table-name $table_name --query "Table.TableStatus"
 
 # get a single item based in it's keys
 aws dynamodb get-item --table-name $table_name --key file://key.json
+
+# get multiple items based in its keys
+aws dynamodb batch-get-item --request-items file://request-items.json
 ```

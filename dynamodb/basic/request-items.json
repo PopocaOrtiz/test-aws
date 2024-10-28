@@ -1,0 +1,15 @@
+{
+	"dynamodb-basic-table-Recipes-171BP7IBQVWPU": {
+		"Keys": [
+			{
+				"Category": {
+					"S": "Cakes"
+				},
+				"Title": {
+					"S": "Banana Cake"
+				}
+			}
+		],
+		"ProjectionExpression": "Directions"
+	}
+}
