@@ -10,4 +10,12 @@ aws dynamodb get-item --table-name $table_name --key file://key.json
 
 # get multiple items based in its keys
 aws dynamodb batch-get-item --request-items file://request-items.json
+
+# query rows
+aws dynamodb query \
+  --table-name $table_name \
+  --projection-expression "Directions" \
+  --key-condition-expression "Category = :C" \
+  --expression-attribute-values '{":C": {"S": "Cakes"}}' \
+  --query "Items[*].Directions.S"
 ```
