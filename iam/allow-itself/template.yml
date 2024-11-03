@@ -1,0 +1,15 @@
+Resources:
+  TheUser:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: TheUser
+      Policies:
+      - PolicyName: GrantItself
+        PolicyDocument:
+          Version: 2012-10-17
+          Statement:
+            Effect: Allow 
+            Action: 
+              - "iam:*" 
+              - "sts:*" 
+            Resource: "*"

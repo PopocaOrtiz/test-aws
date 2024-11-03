@@ -1,0 +1,7 @@
+- Version: 2012-10-17
+  Statement:
+    - Sid: "Access to EC2"
+      Effect: Allow
+      Action: 
+        - "ec2:*"
+      Resource: "*" 
