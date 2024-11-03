@@ -1,0 +1,45 @@
+Resources:
+  AnUser:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: 'my-nice-user'
+      ManagedPolicyArns:
+       - arn:aws:iam::aws:policy/job-function/ViewOnlyAccess
+      Policies:
+        - PolicyName: MyNicePolicy
+          PolicyDocument: 
+            Version: 2012-10-17 
+            Statement: 
+              - Sid: IamListAccess 
+                Effect: Allow 
+                Action: 
+                - 'iam:ListRoles' 
+                - 'iam:ListUsers' 
+                Resource: '*'
+
+  MyInlinePolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: MyNicePolicy
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Action: 'ec2:*'
+            Resource: '*'
+      Users:
+        - !Ref AnUser
+
+  MySecondInlinePolicy:
+    Type: 'AWS::IAM::UserPolicy' 
+    Properties:
+      PolicyName: MySecondInlinePolicy
+      UserName: !Ref AnUser
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Action: 's3:*'
+            Resource: '*'     
+         
+         
