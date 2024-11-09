@@ -12,3 +12,9 @@ Resources:
       Tags:
         - Key: Hello
           Value: World
+        - Key: Region
+          Value: !Ref AWS::Region
+        - Key: AccountId
+          Value: !Ref AWS::AccountId
+        - Key: StackName
+          Value: !Ref AWS::StackName
