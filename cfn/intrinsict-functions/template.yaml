@@ -1,0 +1,41 @@
+AWSTemplateFormatVersion: '2010-09-09'
+
+Parameters:
+  Subnets:
+    Description: Subnet IDs
+    Type: "List<AWS::EC2::Subnet::Id>"
+    Default: "subnet-0870f228f0569fca7, subnet-04fcd40569ffd9c21"
+
+Resources:
+
+  Instancia:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-063d43db0594b521b
+      InstanceType: t2.micro
+
+Outputs:
+  InstanceId:
+    Description: The id of the instance
+    Value: !Ref Instancia
+    Export:
+      Name: instance-id
+  VpcId:
+    Description: The id of the vpc of the instance
+    Value: !GetAtt Instancia.VpcId
+    Export:
+      Name: vpc-id
+  VpcArn:
+    Description: The arn of the vpc of the instance
+    Value: 
+      !Sub 
+        - 'arn:aws:ec2:${AWS::Region}:${AWS::AccountId}:vpc/${VPC_ID}'
+        - VPC_ID: !GetAtt Instancia.VpcId
+    Export:
+      Name: vpc-arn 
+  Subnets:
+    Description: the subnets utilized
+    Value:
+      !Join
+        - ','
+        - !Ref Subnets
