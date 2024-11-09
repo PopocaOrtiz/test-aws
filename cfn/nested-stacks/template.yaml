@@ -1,0 +1,6 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  NestedStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: https://nested-stacks-fer-adbl-1.s3.us-east-1.amazonaws.com/s3_bucket.template

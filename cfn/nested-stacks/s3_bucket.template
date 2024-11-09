@@ -1,0 +1,14 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  BucketName:
+    Type: String
+    Default: cfn-bucket-9238u45890
+Resources:
+  S3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: 
+        Ref: BucketName
+      Tags:
+        - Key: Hello
+          Value: World
