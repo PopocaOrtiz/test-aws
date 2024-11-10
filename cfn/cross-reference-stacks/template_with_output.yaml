@@ -1,0 +1,12 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Resources:
+  Files:
+    Type: AWS::S3::Bucket
+
+Outputs:
+  BucketName:
+    Description: bucket name to be used in another stack
+    Value: !Ref Files
+    Export: 
+      Name: !Sub ${AWS::StackName}BucketName

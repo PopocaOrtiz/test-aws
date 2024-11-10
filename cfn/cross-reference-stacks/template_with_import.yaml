@@ -1,0 +1,13 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Resources:
+  Computer:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-063d43db0594b521b
+      InstanceType: t2.micro
+      Tags:
+        - Key: S3Bucket
+          Value: 
+            Fn::ImportValue:
+              stack-with-s3-bucketBucketName
