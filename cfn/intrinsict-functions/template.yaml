@@ -12,6 +12,24 @@ Resources:
     Type: AWS::EC2::Instance
     Properties:
       ImageId: ami-063d43db0594b521b
+
+  Instancia1:
+    Type: AWS::EC2::Instance
+    DependsOn: Instancia2
+    Properties:
+      ImageId: ami-063d43db0594b521b
+      InstanceType: t2.micro
+  Instancia2:
+    Type: AWS::EC2::Instance
+    DependsOn: Instancia3
+    Properties:
+      ImageId: ami-063d43db0594b521b
+      InstanceType: t2.micro
+  Instancia3:
+    Type: AWS::EC2::Instance
+    DependsOn: Instancia
+    Properties:
+      ImageId: ami-063d43db0594b521b
       InstanceType: t2.micro
 
 Outputs:
