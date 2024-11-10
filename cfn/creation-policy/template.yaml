@@ -1,0 +1,28 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  LaunchTemplate:
+    Properties:
+      LaunchTemplateData:
+        NetworkInterfaces:
+          DeleteOnTermination: true
+        UserData:
+          Fn::Base64:
+            !Sub |
+              #!/bin/bash
+              /opt/aws/bin/cfn-signal -e $? --resource ASG --stack ${AWS::StackName} --region ${AWS::Region}
+  AutoScalingGroup:
+    Type: AWS::AutoScaling::AutoScalingGroup
+    Properties:
+      LaunchTemplate:
+        LaunchTemplateId: !Ref LaunchTemplate
+        Version: !GetAtt LaunchTemplate.LatestVersionNumber
+      MaxSize: '3'
+      MinSize: '1'
+      DesiredCapacity:
+        !Ref WebServerCapacity 
+    CreationPolicy:
+      AutoScalingCreationPolicy:
+        MinSuccessfulInstancesPercent: 100
+      ResourcesSignal:
+        Count: 2
+        Timeout: PT5M
