@@ -1,0 +1,10 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  MyDataBase:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      Engine: postgres
+      DBInstanceClass: db.t3.micro
+      MasterUsername: fer
+      MasterUserPassword: opiqwenxchdf9474823
+      AllocatedStorage: 20
